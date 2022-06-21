@@ -155,7 +155,33 @@ class Solution {
 }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*Given a positive integer num, write a function which returns True if num is a perfect square else False.
+*Input: num = 16
+*Output: true
+*/
+class Solution {
+    public boolean isPerfectSquare(int num) {
+        int left = 0;
+        int right = num;
+        
+        while(left<=right){
+            int middle = left + (right-left)/2;
+            long sq = (long)middle*(long)middle;
+            if(sq<num){
+                left = middle+1;
+            }
+            else if(sq>num){
+                right = middle-1;
+            }
+            else{
+                return true;
+            }
+        }
+        return false;
+    }
+}
 		
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 }
 }
