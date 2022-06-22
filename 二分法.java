@@ -16,11 +16,11 @@ public class Lists {
         
         while(left<=right){
             int middle = (left+right)/2;
-            if(nums[middle]<target){
-                left = middle+1;
-            }
-            else if(nums[middle]>target){
-                right=middle-1;
+            if(nums[middle]<target){      //处理结果的时候观察“=”时候left,right的表现可以决定return哪一个；
+                left = middle+1;          //二分法的两种判定也就是最后left和right的位置，直到left>right两个指针彼此错过，loop结束
+            }                             // 二分法有三种结果 1.找到middle 2.middle找不到，因为在数组外边 [R,L...]或者[....R,L]
+            else if(nums[middle]>target){ // 3.middle找不到，在数组内但不存在（结束时候[R,不存在的目标，L]）
+                right=middle-1;          
             }
             else {
                 return middle;
@@ -54,10 +54,10 @@ public class Lists {
               right= middle-1;
           }
           else {
-              return middle;
+              return middle;  
           }
           
-      }
+      }              //扎到第一个比目标大的位置即可，（结束时候[R,不存在的目标，L]），所以
     return right+1;  //如果target不在数组里面，第一个比middle大的数就是要插入的位置，while loop停止的时候，right等于middle（第一个比target大的数）-1
     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,7 +97,7 @@ public class Lists {
                 right = middle-1;
             }
             else{
-                left = middle+1;     // left一旦度过middle，新的middle永远大于target，right左移，loop结束；
+                left = middle+1;     // 如果nums[middle]<target，left会一直往右移动，直到等于target；
                 rightBorder = left;  // 寻找右边界，nums[middle] == target的时候更新left 
             }
         }
@@ -143,7 +143,7 @@ class Solution {
             long sq = (long)middle*(long)middle;
             
             if(sq<=x){
-                left=middle+1;
+                left=middle+1;  //最后等于X的时候，left=middle+1 所以left-1是结果，而right+1并不是正确答案
             }
             else{
                 right=middle-1;
