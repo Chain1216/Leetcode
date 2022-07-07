@@ -68,3 +68,40 @@ class Solution {
   //977 用单独的这种方法暂时不能理解;
 }
 
+
+//209
+//输入：target = 7, nums = [2,3,1,2,4,3]
+//输出：2
+//解释：子数组 [4,3] 是该条件下的长度最小的子数组。
+
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {  //这个叫做滑动窗口法，也可以叫做双指针的变形
+        int left = 0;
+        int right;
+        int sum = 0;
+        int count = Integer.MAX_VALUE;
+
+        for(right = 0; right < nums.length; right++){
+            sum+=nums[right];
+            while (sum >= target){  //如果现在的加值大于target，则滑动左边直到小于target位置，牛逼吧？
+                count = Math.min(count, right-left+1);
+                    sum-= nums[left];
+                    left++;
+                
+            }
+
+        }
+        
+        return count == Integer.MAX_VALUE ? 0:count;    
+
+
+    }
+}
+
+
+
+
+
+
+
+
