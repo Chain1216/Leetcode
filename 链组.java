@@ -28,3 +28,25 @@ class Solution {
         
     }
 }
+
+class Solution {  //这个还有一种逻辑更清晰的虚拟表头方法//
+    public ListNode removeElements(ListNode head, int val) {
+        
+        while(head!= null && head.val == val){  //对于表头要单独处理，直到到达安全表头；
+            head = head.next;
+        }
+        
+        ListNode curr = head;
+        
+        while(curr != null){         
+            while(curr.next!=null && curr.next.val == val){ //直到到达安全元素；
+                curr.next = curr.next.next;
+            }
+            curr = curr.next;
+        }
+        
+        return head;
+        
+        
+}
+}
